@@ -4,11 +4,13 @@
   "description": "",
   "keywords": [],
   "main": "dist/lib/index.js",
-  "module": "dist/es/index.js",
+  "module": "dist/esm/index.js",
   "typings": "dist/types/index.d.ts",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "typedocs",
+    "docs"
   ],
   "author": "whitefon <nlffeng@163.com>",
   "repository": {
@@ -22,7 +24,7 @@
   "scripts": {
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc --outDir dist/esm && tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "tsc --outDir dist/esm && tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out typedocs --target es6 --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
