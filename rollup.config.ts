@@ -4,16 +4,28 @@ import sourceMaps from 'rollup-plugin-sourcemaps'
 import camelCase from 'lodash.camelcase'
 import typescript from 'rollup-plugin-typescript2'
 import json from 'rollup-plugin-json'
-
-const pkg = require('./package.json')
+import { terser } from 'rollup-plugin-terser'
 
 const libraryName = 'white-react-use'
+const cameCaseName = camelCase(libraryName)
 
 export default {
   input: 'src/index.ts',
   output: [
-    { file: pkg.main, name: camelCase(libraryName), format: 'umd', sourcemap: true, globals: { react: 'React' } },
-    { file: pkg.module, format: 'es', sourcemap: true, globals: { react: 'React' } },
+    {
+      file: `dist/${cameCaseName}.js`,
+      name: cameCaseName,
+      format: 'umd',
+      sourcemap: true,
+      globals: { react: 'React' }
+    },
+    {
+      file: `dist/${cameCaseName}.min.js`,
+      name: cameCaseName,
+      format: 'umd',
+      sourcemap: true,
+      globals: { react: 'React' },
+    },
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   external: [
@@ -36,5 +48,8 @@ export default {
 
     // Resolve source maps to the original source
     sourceMaps(),
+    terser({
+      include: [/^.+\.min\.js$/]
+    })
   ],
 }

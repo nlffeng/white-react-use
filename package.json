@@ -3,16 +3,17 @@
   "version": "0.0.1",
   "description": "",
   "keywords": [],
-  "main": "dist/white-react-use.umd.js",
-  "module": "dist/white-react-use.es5.js",
-  "typings": "dist/types/white-react-use.d.ts",
+  "main": "dist/lib/index.js",
+  "module": "dist/es/index.js",
+  "typings": "dist/types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "author": "whitefon <nlffeng@163.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/nlffeng/whtie-react-use"
   },
   "license": "MIT",
   "engines": {
@@ -115,6 +116,7 @@
     "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.18.0",
     "semantic-release": "^15.9.16",
     "shelljs": "^0.8.3",
