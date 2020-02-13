@@ -1,11 +1,8 @@
 <div align="center">
   <h1>
     <br/>
-    <br/>
     <br />
     white-react-use
-    <br />
-    <br />
     <br />
     <br />
   </h1>
@@ -27,16 +24,9 @@
     <br /> -->
     Collection of essential <a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a>.</em>
   </sup>
-  <!-- <br />
   <br />
+  <pre>npm i <a href="https://www.npmjs.com/package/white-react-use">white-react-use</a></pre>
   <br />
-  <br />
-  <pre>npm i <a href="https://www.npmjs.com/package/react-use">white-react-use</a></pre>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br /> -->
 </div>
 
 - [`useListData`](./docs/useListData.md) &mdash; 传入请求Api，设置列表和分页数据
