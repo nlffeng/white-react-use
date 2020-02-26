@@ -32,11 +32,11 @@ export interface LoadDataParams {
 export type LoadDataFn = (params?: LoadDataParams) => Promise<any>
 
 export type UseListDataRet = [
+  LoadDataFn,
   Array<any>,
   Dispatch<SetStateAction<Array<any>>>,
   Pagination,
-  Dispatch<SetStateAction<Pagination>>,
-  LoadDataFn
+  Dispatch<SetStateAction<Pagination>>
 ]
 
 export default function useListData(loadApi: LoadApi, options: Options = {}): UseListDataRet {
@@ -82,5 +82,5 @@ export default function useListData(loadApi: LoadApi, options: Options = {}): Us
     [loadApi, listAlias, mode, list, currentAlias, pageSizeAlias, pageSize, totalAlias]
   )
 
-  return [list, setList, pagination, setPagination, loadData]
+  return [loadData, list, setList, pagination, setPagination]
 }

@@ -16,39 +16,39 @@ describe('useListData', () => {
     expect(Array.isArray(value)).toBeTruthy()
     expect(value).toHaveLength(5)
 
-    const firstV = value[0]
-    expect(Array.isArray(firstV)).toBeTruthy()
-    expect(firstV).toHaveLength(0)
+    const list = value[1]
+    expect(Array.isArray(list)).toBeTruthy()
+    expect(list).toHaveLength(0)
 
-    const secondV = value[1]
-    expect(secondV).toBeInstanceOf(Function)
-    const secondState = [1]
+    const setList = value[2]
+    expect(setList).toBeInstanceOf(Function)
+    const newList = [1]
     act(() => {
-      secondV(secondState)
+      setList(newList)
     })
-    expect(result.current[0]).toBe(secondState)
+    expect(result.current[1]).toBe(newList)
 
-    const thirdV = value[2]
-    expect(thirdV).toEqual({
+    const pagination = value[3]
+    expect(pagination).toEqual({
       current: 1,
       pageSize: 10,
       total: 0
     })
 
-    const fourthV = value[3]
-    expect(fourthV).toBeInstanceOf(Function)
-    const fourthState = {
+    const setPagination = value[4]
+    expect(setPagination).toBeInstanceOf(Function)
+    const newPagination = {
       current: 2,
       pageSize: 20,
       total: 100
     }
     act(() => {
-      fourthV(fourthState)
+      setPagination(newPagination)
     })
-    expect(result.current[2]).toBe(fourthState)
+    expect(result.current[3]).toBe(newPagination)
 
-    const fifthV = value[4]
-    expect(typeof fifthV).toBe('function')
+    const loadData = value[0]
+    expect(typeof loadData).toBe('function')
   })
 
   describe('测试返回值中的 loadData 方法', () => {
@@ -78,14 +78,14 @@ describe('useListData', () => {
         total: 100
       }
       await act(async () => {
-        loadDataV = await result.current[4](params)
+        loadDataV = await result.current[0](params)
       })
       expect(loadApiParams).toBe(params)
       expect(typeof loadDataV).toBe('object')
       expect(loadDataV.list).toEqual([100])
       expect(loadDataV.total).toBe(100)
-      expect(result.current[0]).toEqual([100])
-      expect(result.current[2].total).toBe(100)
+      expect(result.current[1]).toEqual([100])
+      expect(result.current[3].total).toBe(100)
 
       // 第二次返回值
       ret = {
@@ -93,13 +93,13 @@ describe('useListData', () => {
         total: 200
       }
       await act(async () => {
-        loadDataV = await result.current[4](params)
+        loadDataV = await result.current[0](params)
       })
       expect(typeof loadDataV).toBe('object')
       expect(loadDataV.list).toEqual([200])
       expect(loadDataV.total).toBe(200)
-      expect(result.current[0]).toEqual([200])
-      expect(result.current[2].total).toBe(200)
+      expect(result.current[1]).toEqual([200])
+      expect(result.current[3].total).toBe(200)
     })
 
     it('测试 mode: add', async () => {
@@ -114,14 +114,14 @@ describe('useListData', () => {
         total: 100
       }
       await act(async () => {
-        loadDataV = await result.current[4](params)
+        loadDataV = await result.current[0](params)
       })
       expect(loadApiParams).toBe(params)
       expect(typeof loadDataV).toBe('object')
       expect(loadDataV.list).toEqual([100])
       expect(loadDataV.total).toBe(100)
-      expect(result.current[0]).toEqual([100])
-      expect(result.current[2].total).toBe(100)
+      expect(result.current[1]).toEqual([100])
+      expect(result.current[3].total).toBe(100)
 
       // 第二次返回值
       ret = {
@@ -129,13 +129,13 @@ describe('useListData', () => {
         total: 200
       }
       await act(async () => {
-        loadDataV = await result.current[4](params)
+        loadDataV = await result.current[0](params)
       })
       expect(typeof loadDataV).toBe('object')
       expect(loadDataV.list).toEqual([200])
       expect(loadDataV.total).toBe(200)
-      expect(result.current[0]).toEqual([100, 200])
-      expect(result.current[2].total).toBe(200)
+      expect(result.current[1]).toEqual([100, 200])
+      expect(result.current[3].total).toBe(200)
     })
 
     it('测试 loadData 在 mode 为 update 模式下参数为空和结果为空值', async () => {
@@ -144,12 +144,12 @@ describe('useListData', () => {
 
       let loadDataV: any
       await act(async () => {
-        loadDataV = await result.current[4]()
+        loadDataV = await result.current[0]()
       })
       expect(loadApiParams).toEqual({})
       expect(loadDataV).toEqual({})
-      expect(result.current[0]).toEqual([])
-      expect(result.current[2].total).toBe(0)
+      expect(result.current[1]).toEqual([])
+      expect(result.current[3].total).toBe(0)
     })
 
     it('测试 loadData 在 mode 为 add 模式下参数为空和结果为空值', async () => {
@@ -158,12 +158,12 @@ describe('useListData', () => {
 
       let loadDataV: any
       await act(async () => {
-        loadDataV = await result.current[4]()
+        loadDataV = await result.current[0]()
       })
       expect(loadApiParams).toEqual({})
       expect(loadDataV).toEqual({})
-      expect(result.current[0]).toEqual([])
-      expect(result.current[2].total).toBe(0)
+      expect(result.current[1]).toEqual([])
+      expect(result.current[3].total).toBe(0)
     })
 
     it('测试 loadData 结果失败', async () => {
@@ -182,7 +182,7 @@ describe('useListData', () => {
       let error!: string
       await act(async () => {
         try {
-          loadDataV = await result.current[4]({ current: 1, pageSize: 10 })
+          loadDataV = await result.current[0]({ current: 1, pageSize: 10 })
         } catch (e) {
           error = e
         }
@@ -216,8 +216,8 @@ describe('useListData', () => {
 
     const { result } = renderHook(() => useListData(loadApi, options))
 
-    expect(result.current[0]).toEqual([])
-    expect(result.current[2]).toEqual({
+    expect(result.current[1]).toEqual([])
+    expect(result.current[3]).toEqual({
       current: 2,
       pageSize: 20,
       total: 10
@@ -225,11 +225,11 @@ describe('useListData', () => {
 
     let loadDataV: any
     await act(async () => {
-      loadDataV = await result.current[4]({ pageNumAlias: 3, pageSizeAlias: 30 })
+      loadDataV = await result.current[0]({ pageNumAlias: 3, pageSizeAlias: 30 })
     })
 
-    expect(result.current[0]).toEqual([100])
-    expect(result.current[2]).toEqual({
+    expect(result.current[1]).toEqual([100])
+    expect(result.current[3]).toEqual({
       current: 3,
       pageSize: 30,
       total: 100
