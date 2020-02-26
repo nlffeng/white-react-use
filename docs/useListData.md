@@ -23,7 +23,7 @@ const loadApi = (params) => {
 };
 
 function Home(props) {
-  const [list, setList, pagination, setPagination, loadDataFn] = useListData(loadApi);
+  const [loadDataFn, list, setList, pagination, setPagination] = useListData(loadApi);
 
   useEffect(() => {
     loadDataFn({
@@ -47,7 +47,7 @@ function Home(props) {
 
 ## 参考
 ```ts
-const [list, setList, pagination, setPagination, loadDataFn] = useListData(loadApi, {
+const [loadDataFn, list, setList, pagination, setPagination] = useListData(loadApi, {
   currentAlias,
   totalAlias,
   pageSizeAlias,
@@ -74,11 +74,12 @@ const [list, setList, pagination, setPagination, loadDataFn] = useListData(loadA
 
 #### 返回值
 类型：数组
-- 下标0 —— 列表，请求api后获得的数据
-- 下标1 —— 手动设置列表数据，为 useState 返回的方法
-- 下标2 —— 分页数据
-- 下标3 —— 手动设置分页数据，为 useState 返回的方法
-- 下标4 —— 加载函数，封装了 loadApi 和列表、分页数据逻辑，其参数直接应用于 loadApi 函数，参数(对象)：
+- 下标0 —— 加载函数，封装了 loadApi 和列表、分页数据逻辑，其参数直接应用于 loadApi 函数，参数(对象)：
   - 当前页码，若上述的 options.currentAlias 未写，该 key 应为: pageNum
   - 每页条数，若上述的 options.pageSizeAlias 未写，该 key 应为: pageSize
   - 其它参数...
+- 下标1 —— 列表，请求api后获得的数据
+- 下标2 —— 手动设置列表数据，为 useState 返回的方法
+- 下标3 —— 分页数据
+- 下标4 —— 手动设置分页数据，为 useState 返回的方法
+
