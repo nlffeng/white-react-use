@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-    <br/>
+    <br />
     <br />
     white-react-use
     <br />
@@ -14,4 +14,12 @@
   <br />
 </div>
 
-- [`useListData`](./docs/useListData.md) &mdash; 传入请求Api，设置列表和分页数据
+- [`useListData`](./docs/useListData.md) &mdash; 传入请求Api，设置列表和分页数据 [![][img-demo]](https://codesandbox.io/s/uselistdata-0js8z)
+- [`useToggleArray`](./docs/useToggleArray.md) &mdash; 状态：数组数据，透出方法可存储和移除数组内部数据 [![][img-demo]](https://codesandbox.io/s/usetogglearray-vqn24)
+
+
+
+
+
+[img-demo]: https://img.shields.io/badge/demo-%20%20%20%F0%9F%9A%80-green.svg
+

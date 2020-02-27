@@ -1,6 +1,6 @@
 # `useListData`
 
-根据传入请求Api，透出列表、分页数据和加载函数(封装了请求Api，内部处理了列表和分页数据)
+根据传入请求Api，透出列表、分页数据和加载函数(封装了请求Api，内部处理了列表和分页数据) [![][img-demo]](https://codesandbox.io/s/uselistdata-0js8z)
 
 
 ## 场景
@@ -83,3 +83,8 @@ const [loadDataFn, list, setList, pagination, setPagination] = useListData(loadA
 - 下标3 —— 分页数据
 - 下标4 —— 手动设置分页数据，为 useState 返回的方法
 
+
+
+
+
+[img-demo]: https://img.shields.io/badge/demo-%20%20%20%F0%9F%9A%80-green.svg
