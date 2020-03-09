@@ -3,7 +3,7 @@
  */
 
 import { useMemo, DependencyList } from 'react'
-import queryString from 'query-string'
+import { resolveQuery } from './util'
 
 export interface UseHashQueryRet {
   [propName: string]: any
@@ -18,8 +18,8 @@ export default function useHashQuery(deps: DependencyList | undefined = []): Use
       return {}
     }
 
-    const string = hash.substr(i)
-    const query = queryString.parse(string)
+    const string = hash.substring(i + 1)
+    const query = resolveQuery(string)
 
     return query
   }, deps)
