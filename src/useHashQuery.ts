@@ -18,8 +18,8 @@ export default function useHashQuery(deps: DependencyList | undefined = []): Use
       return {}
     }
 
-    const string = hash.substring(i + 1)
-    const query = resolveQuery(string)
+    const str = hash.substring(i + 1)
+    const query = resolveQuery(str)
 
     return query
   }, deps)

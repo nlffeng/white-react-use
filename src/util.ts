@@ -1,9 +1,9 @@
-export interface resolveQueryRet {
+export interface ResolveQueryRet {
   [propName: string]: any
 }
 
-export function resolveQuery(str: string): resolveQueryRet {
-  const ret: resolveQueryRet = {}
+export function resolveQuery(str: any): ResolveQueryRet {
+  const ret: ResolveQueryRet = {}
 
   if (typeof str !== 'string') {
     return ret
@@ -18,7 +18,7 @@ export function resolveQuery(str: string): resolveQueryRet {
   }
 
   const kvs = str.split('&')
-  kvs.forEach(it => {
+  kvs.forEach((it: string) => {
     const kvStr = it.trim()
 
     if (!kvStr) {
