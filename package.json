@@ -10,7 +10,8 @@
   "files": [
     "dist",
     "typedocs",
-    "docs"
+    "docs",
+    "src"
   ],
   "author": "whitefon <nlffeng@163.com>",
   "repository": {
