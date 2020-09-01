@@ -21,7 +21,7 @@
 - [`useListData`](./docs/useListData.md) &mdash; 传入请求Api，设置列表和分页数据 [![][img-demo]](https://codesandbox.io/s/uselistdata-0js8z)
 - [`useToggleArray`](./docs/useToggleArray.md) &mdash; 状态：数组数据，透出方法可存储和移除数组内部数据 [![][img-demo]](https://codesandbox.io/s/usetogglearray-vqn24)
 - [`useHashQuery`](./docs/useHashQuery.md) &mdash; 获取地址栏哈希后的查询参数 [![][img-demo]](https://codesandbox.io/s/usehashquery-751f0)
-- [`useWindowSize`](./docs/useHashQuery.md) &mdash; 一个用于获取窗口尺寸的 Hook，内部监听了 resize 事件将会触发返回新的窗口尺寸 [![][img-demo]](https://codesandbox.io/s/usewindowsize-w90zq)
+- [`useWindowSize`](./docs/useWindowSize.md) &mdash; 一个用于获取窗口尺寸的 Hook，内部监听了 resize 事件将会触发返回新的窗口尺寸 [![][img-demo]](https://codesandbox.io/s/usewindowsize-w90zq)
 
 
 
