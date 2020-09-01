@@ -2,9 +2,12 @@
 set -e
 echo "Enter release version: "
 read VERSION
-read -p "Releasing $VERSION - are you sure? (y/n)" -n 1 -r
+read -p "is beta - are you sure? (y/n)" -n 1 -r TAG_BETA
 echo  # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
+read -p "Releasing $VERSION - are you sure? (y/n)" -n 1 -r RELEASE
+echo  # (optional) move to a new line
+
+if [[ $RELEASE =~ ^[Yy]$ ]]
 then
   echo "Releasing $VERSION ..."
 
@@ -12,9 +15,16 @@ then
   git add -A
   # git commit -m "[build] $VERSION"
   npm run commit
-  npm version $VERSION --message "[release] $VERSION"
-  git push origin master
+  npm version $VERSION --message "chore: [release] $VERSION"
+  git push
 
   # publish
-  npm publish
+  if [[ $TAG_BETA =~ ^[Yy]$ ]]
+  then
+    echo "npm publish --tag beta ..."
+    npm publish --tag beta
+  else
+    echo "npm publish"
+    npm publish
+  fi
 fi

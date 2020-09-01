@@ -34,3 +34,50 @@ export function resolveQuery(str: any): ResolveQueryRet {
 
   return ret
 }
+
+// 节流
+export const throttle = (
+  callback: Function,
+  duration: number | 'requestAnimationFrame' = 300
+): Function => {
+  let running: boolean = false
+
+  if (duration === 'requestAnimationFrame') {
+    return function wrapFn(...args: any[]) {
+      if (running) return
+
+      running = true
+
+      window.requestAnimationFrame(() => {
+        callback(...args)
+        running = false
+      })
+    }
+  }
+
+  return function wrapFn(...args: any[]) {
+    if (running) return
+
+    running = true
+    callback(...args)
+
+    setTimeout(() => {
+      running = false
+    }, duration)
+  }
+}
+
+// 防抖
+export const debounce = (callback: Function, duration: number = 300): Function => {
+  let timer: any
+
+  return function wrapFn(...args: any[]) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+
+    timer = setTimeout(() => {
+      callback(...args)
+    }, duration)
+  }
+}
