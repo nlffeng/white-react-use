@@ -17,15 +17,17 @@ export interface WindowSize {
   outerHeight: number
 }
 
+const initialState = () => ({
+  innerWidth: window.innerWidth,
+  innerHeight: window.innerHeight,
+  outerWidth: window.outerWidth,
+  outerHeight: window.outerHeight
+})
+
 export default function useWindowSize(mode?: Throttle, duration?: Duration): WindowSize
 export default function useWindowSize(mode: Debounce, duration?: number): WindowSize
 export default function useWindowSize(mode: any = 'throttle', duration: any): any {
-  const [windowSize, setWinSize] = useState<WindowSize>(() => ({
-    innerWidth: window.innerWidth,
-    innerHeight: window.innerHeight,
-    outerWidth: window.outerWidth,
-    outerHeight: window.outerHeight
-  }))
+  const [windowSize, setWinSize] = useState<WindowSize>(initialState)
 
   useEffectOnce(() => {
     let handleResize: any = () => {
