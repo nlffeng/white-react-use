@@ -10,3 +10,4 @@ compiled
 .awcache
 .rpt2_cache
 typedocs
+package-lock.json
