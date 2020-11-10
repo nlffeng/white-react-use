@@ -1,0 +1,17 @@
+/**
+ * useFirstMountState(是否第一次挂载)
+ */
+
+import { useRef } from 'react'
+
+export default function useFirstMountState(): boolean {
+  const isFirst = useRef(true)
+
+  if (isFirst.current) {
+    isFirst.current = false
+
+    return true
+  }
+
+  return isFirst.current
+}
