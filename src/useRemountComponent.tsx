@@ -9,7 +9,7 @@ import useFirstMountState from './useFirstMountState'
 interface ListenFactor {
   listenFactor?: any
   listenFactors?: Array<any>
-  isRemountFn: (factor: any) => boolean
+  isRemountFn?: (factor: any) => boolean
 }
 type ListenFactors = Array<ListenFactor>
 
