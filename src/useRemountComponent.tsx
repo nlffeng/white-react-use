@@ -61,7 +61,7 @@ function useKey(remountFactorRef: MutableRefObject<RemountFactorRef>) {
       const isRemount = isRemountFn ? isRemountFn(listenFactors || listenFactor) : true
 
       if (!isFirstMount && isRemount) {
-        setRemountKey((new Date()).getTime())
+        setRemountKey(remountKey === 10000 ? 0 : remountKey + 1)
       }
     })
   }
