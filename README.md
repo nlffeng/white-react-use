@@ -22,6 +22,7 @@
 - [`useToggleArray`](./docs/useToggleArray.md) &mdash; 状态：数组数据，透出方法可存储和移除数组内部数据 [![][img-demo]](https://codesandbox.io/s/usetogglearray-vqn24)
 - [`useHashQuery`](./docs/useHashQuery.md) &mdash; 获取地址栏哈希后的查询参数 [![][img-demo]](https://codesandbox.io/s/usehashquery-751f0)
 - [`useWindowSize`](./docs/useWindowSize.md) &mdash; 一个用于获取窗口尺寸的 Hook，内部监听了 resize 事件将会触发返回新的窗口尺寸 [![][img-demo]](https://codesandbox.io/s/usewindowsize-w90zq)
+- [`useControlState`](./docs/useControlState.md) &mdash; 设置指定状态为受控或非受控(内部) [![][img-demo]](https://codesandbox.io/s/usewindowsize-w90zq)
 
 
 
