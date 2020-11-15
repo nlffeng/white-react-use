@@ -3,7 +3,6 @@ import { useFirstMountState } from '../src'
 
 describe('useFirstMountState', () => {
   it('判断组件是否第一次挂载', () => {
-    let count = 0
     const { result, rerender } = renderHook(() => useFirstMountState())
 
     expect(result.current).toBeTruthy()
