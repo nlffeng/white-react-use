@@ -11,10 +11,10 @@
        <img src="https://img.shields.io/npm/v/white-react-use.svg" alt="npm package" />
     </a>
     <br />
-    Collection of essential <a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a>.</em>
+    React Hooks
   </sup>
   <br />
-  <pre>npm i <a href="https://www.npmjs.com/package/white-react-use">white-react-use</a></pre>
+  <pre>npm i <a href="https://www.npmjs.com/package/white-react-use">white-react-use</a> -S</pre>
   <br />
 </div>
 
@@ -23,6 +23,9 @@
 - [`useHashQuery`](./docs/useHashQuery.md) &mdash; 获取地址栏哈希后的查询参数 [![][img-demo]](https://codesandbox.io/s/usehashquery-751f0)
 - [`useWindowSize`](./docs/useWindowSize.md) &mdash; 一个用于获取窗口尺寸的 Hook，内部监听了 resize 事件将会触发返回新的窗口尺寸 [![][img-demo]](https://codesandbox.io/s/usewindowsize-w90zq)
 - [`useControlState`](./docs/useControlState.md) &mdash; 设置指定状态为受控或非受控(内部) [![][img-demo]](https://codesandbox.io/s/usecontrolstate-zutiz)
+- [`useEffectOnce`](./docs/useEffectOnce.md) &mdash; React的生命周期钩子，只运行一次 useEffect
+- [`useFirstMountState`](./docs/useFirstMountState.md) &mdash; 组件是否为挂载时
+- [`useListenerData`](./docs/useListenerData.md) &mdash; 监听数据变化
 
 
 
