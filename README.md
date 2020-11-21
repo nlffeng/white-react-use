@@ -26,6 +26,7 @@
 - [`useEffectOnce`](./docs/useEffectOnce.md) &mdash; React的生命周期钩子，只运行一次 useEffect
 - [`useFirstMountState`](./docs/useFirstMountState.md) &mdash; 组件是否为挂载时
 - [`useListenerData`](./docs/useListenerData.md) &mdash; 监听数据变化
+- [`useChangedState`](./docs/useChangedState.md) &mdash; 监听数据变化，生成可变的状态
 
 
 
