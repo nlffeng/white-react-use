@@ -1,6 +1,6 @@
 {
   "name": "white-react-use",
-  "version": "2.2.0",
+  "version": "2.3.1",
   "description": "",
   "keywords": [],
   "main": "dist/lib/index.js",
@@ -51,18 +51,11 @@
   },
   "release": {
     "branches": [
-      "master",
-      {
-        "name": "next",
-        "prerelease": "rc"
-      }
+      "master"
     ],
-    "verifyConditions": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
-    ],
-    "prepare": [
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git"
@@ -110,9 +103,8 @@
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
-    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
-    "@semantic-release/npm": "^7.0.3",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/jest": "^23.3.2",
     "@types/react": "^16.9.19",
@@ -145,7 +137,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.18.0",
-    "semantic-release": "^17.0.4",
+    "semantic-release": "^17.2.3",
     "shelljs": "^0.8.3",
     "ts-jest": "^23.10.2",
     "ts-node": "^7.0.1",

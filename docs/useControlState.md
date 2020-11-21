@@ -1,6 +1,6 @@
 # `useControlState`
 
-设置指定状态为受控或非受控(内部) [![][img-demo]](https://codesandbox.io/s/usewindowsize-w90zq)
+设置指定状态为受控或非受控(内部) [![][img-demo]](https://codesandbox.io/s/usecontrolstate-zutiz)
 
 ## 代码演示
 

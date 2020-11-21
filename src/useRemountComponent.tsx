@@ -2,9 +2,8 @@
  * useRemountComponent(再次挂载指定组件)
  */
 
-import React, { ComponentType, FunctionComponent, useState, useRef, useMemo, MutableRefObject } from 'react'
-import useListenerData from './useListenerData'
-import useFirstMountState from './useFirstMountState'
+import React, { ComponentType, FunctionComponent, useRef, useMemo } from 'react'
+import useChangedState, { dealRemountFactors, useKey } from './useChangedState'
 
 interface ListenFactor {
   listenFactor?: any
@@ -20,16 +19,6 @@ interface RemountFactorRef {
 
 interface Props {
   [propName: string]: any
-}
-
-export const useRemountKey = (listenFactors?: ListenFactor | ListenFactors) => {
-  const remountFactors = dealRemountFactors(listenFactors)
-  const remountFactorRef = useRef<RemountFactorRef>(remountFactors)
-  remountFactorRef.current.listenFactors = remountFactors.listenFactors
-
-  const remountKey = useKey(remountFactorRef)
-
-  return remountKey
 }
 
 export default function useRemountComponent(Component: ComponentType, listenFactors?: ListenFactor | ListenFactors) {
@@ -48,39 +37,4 @@ export default function useRemountComponent(Component: ComponentType, listenFact
   return WrapComponent
 }
 
-function useKey(remountFactorRef: MutableRefObject<RemountFactorRef>) {
-  const [remountKey, setRemountKey] = useState<number>(0)
-  const isFirstMount = useFirstMountState()
-  const { count, listenFactors: factors } = remountFactorRef.current
-
-  for (let i = 0; i < count; i += 1) {
-    const factor = factors[i] || {}
-    const { listenFactor, listenFactors, isRemountFn } = factor
-
-    useListenerData(listenFactors || [listenFactor], () => {
-      const isRemount = isRemountFn ? isRemountFn(listenFactors || listenFactor) : true
-
-      if (!isFirstMount && isRemount) {
-        setRemountKey(remountKey === 10000 ? 0 : remountKey + 1)
-      }
-    })
-  }
-
-  return remountKey
-}
-
-function dealRemountFactors(listenFactors?: ListenFactor | ListenFactors) {
-  let count = 0
-
-  if (listenFactors) {
-    if (!Array.isArray(listenFactors)) {
-      listenFactors = [listenFactors]
-    }
-    count = listenFactors.length
-  }
-
-  return {
-    count,
-    listenFactors: listenFactors || [],
-  }
-}
+export const useRemountKey = useChangedState
