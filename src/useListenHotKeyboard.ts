@@ -2,37 +2,68 @@
  * useListenHotKeyboard(绑定键盘快捷键)
  */
 
-import { useRef } from 'react'
-import useEffectOnce from './useEffectOnce'
+import { useRef, useCallback, KeyboardEvent } from 'react'
 
-interface SingleHotkey {
-  bindElement?: HTMLElement
-  key: string | number | Array<string | number>
-  useCapture?: boolean
+type BaseKey = 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey'
+
+interface Params {
+  baseKey: BaseKey | Array<BaseKey>
+  effectKey: number | Array<number>
+  handleCallback?: (msg: string, i: number, event: KeyboardEvent) => void
+  expiredCallback?: (i: number) => void
 }
 
-type Params = SingleHotkey | Array<SingleHotkey>
+export default function useListenHotKeyboard(params: Params): any {
+  const paramsRef = useRef<Params>(params)
+  const effectIndexRef = useRef<number>(0)
+  const timerRef = useRef<number>()
 
-export default function useListenHotKeyboard(params: Params): void {
-  // tslint:disable-next-line: strict-type-predicates
-  if (typeof params !== 'object') {
-    return
+  paramsRef.current.handleCallback = params.handleCallback
+  paramsRef.current.expiredCallback = params.expiredCallback
+
+  const handleCallback = useCallback((event: KeyboardEvent) => {
+    const params = paramsRef.current
+    const baseKey = typeof params.baseKey === 'string' ? [params.baseKey] : params.baseKey
+    const effectKey = typeof params.effectKey === 'number' ? [params.effectKey] : params.effectKey
+    let isBasePass = true
+
+    for (let i = 0; i < baseKey.length; i += 1) {
+      isBasePass = event[baseKey[i]]
+      if (!isBasePass) return
+    }
+
+    if (effectKey[effectIndexRef.current] === event.keyCode) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+
+      effectIndexRef.current += 1
+      if (effectIndexRef.current >= effectKey.length) {
+        if (params.handleCallback) {
+          params.handleCallback('', effectIndexRef.current, event)
+        }
+      } else {
+        const msg = `组合键已生效，正在等待按下第${effectIndexRef.current + 1}键...`
+        console.log(msg)
+
+        if (params.handleCallback) {
+          params.handleCallback(msg, effectIndexRef.current, event)
+        }
+
+        timerRef.current = window.setTimeout(() => {
+          if (params.expiredCallback) {
+            params.expiredCallback(effectIndexRef.current)
+          }
+          effectIndexRef.current = 0
+          timerRef.current = undefined
+        }, 4000)
+      }
+    }
+  }, [])
+
+  return {
+    onKeyDown: handleCallback
   }
-
-  const hotkeyRef = useRef<Array<SingleHotkey>>([])
-  hotkeyRef.current = Array.isArray(params) ? params : [params]
-
-  useEffectOnce(() => {
-    const handleCallback = (event: KeyboardEvent) => {
-      // TODO...
-    }
-
-    document.addEventListener('keydown', handleCallback)
-
-    return () => {
-      document.removeEventListener('keydown', handleCallback)
-    }
-  })
 }
 
 // useListenHotKeyboard({
