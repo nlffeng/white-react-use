@@ -41,7 +41,11 @@ const App = () => {
 ## API
 
 ```jsx
-const winSize = useWindowSize(mode, duration);
+const [value, setValue] = useControlState({
+    isControl: 'value' in props,
+    value: props.value,
+    onChange: props.onChange,
+  });
 ```
 
 ## 参数(Object)
