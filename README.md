@@ -27,6 +27,7 @@
 - [`useFirstMountState`](./docs/useFirstMountState.md) &mdash; 组件是否为挂载时
 - [`useListenerData`](./docs/useListenerData.md) &mdash; 监听数据变化
 - [`useChangedState`](./docs/useChangedState.md) &mdash; 监听数据变化，生成可变的状态
+- [`useInterval`](./docs/useInterval.md) &mdash; 使用 setInterval 轮询指定的函数
 
 
 
